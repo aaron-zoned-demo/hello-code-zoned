@@ -22,7 +22,7 @@ const Todo: React.SFC<Props> = ({
     <li className="Todo">
       <input type="text" name="text" onChange={e => onChangeText(id, e.target.value)} value={text} />
       <input type="checkbox" name="done" onChange={e => onChangeDone(id, e.target.checked)} checked={done} />
-      <button className="btn btn-danger" onClick={() => onRemove(id)}>Delete</button>
+      <button className="btn btn-danger" onClick={() => onRemove(id)}>🗑️</button>
     </li>
   );
 }

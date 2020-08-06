@@ -18,7 +18,7 @@ ul {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: papayawhip;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,4 +39,26 @@ ul {
   to {
     transform: rotate(360deg);
   }
+}
+
+.TodoList {
+  border: 1px solid gray;
+  padding: 2rem;
+  border-radius: 10px;
+  background: darkgray;
+  box-shadow: rgba(0, 0, 0, 0.3) 10px 10px 10px;
+}
+
+.TodoList h2 {
+  color: #333;
+}
+
+.TodoList input {
+  border: none;
+  background: none;
+}
+
+.Todo {
+  background: white;
+  border: 1px solid gray;
 }
