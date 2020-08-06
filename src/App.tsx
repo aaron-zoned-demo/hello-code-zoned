@@ -1,23 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import TodoList from './TodoList'
+import { ITodo } from './types'
 import './App.css';
 
+const initialTodos = [
+  { id: 0, text: 'Make a demo app', done: true },
+  { id: 1, text: 'Explain firebase', done: true }
+]
+
 function App() {
+  const [todos, updateTodos] = useState<ITodo[]>(initialTodos)
+  function handleAddTodo(text: string) {
+    const newTodo: ITodo = {
+      id: todos.length,
+      text,
+      done: false
+    }
+    updateTodos([...todos, newTodo])
+  }
+  function handleRemoveTodo(id: number) {
+    updateTodos(todos.filter(t => t.id !== id))
+  }
+  function handleUpdateTodoText(id: number, text: string) {
+    updateTodos(todos.map(t => t.id === id ? { id, text, done: false } : t))
+  }
+  function handleUpdateTodoDone(id: number, done: boolean) {
+    updateTodos(todos.map(t => t.id === id ? { id, text: t.text, done } : t))
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TodoList
+          todos={todos}
+          onAddTodo={handleAddTodo}
+          onRemoveTodo={handleRemoveTodo}
+          onUpdateTodoText={handleUpdateTodoText}
+          onUpdateTodoDone={handleUpdateTodoDone}
+        />
       </header>
     </div>
   );
